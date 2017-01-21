@@ -38,8 +38,10 @@ def findmissingperson():
 @app.route("/reportmissingperson")
 def reportmissingperson():
 	if request.method == 'POST':
-		check(url)
-		return render_template('displayresult.html')
+		#check(url)
+		print("Reached here")
+		return "Good Work"
+		#render_template('displayresult.html'"")
 	else:
 		return render_template('reportmissingperson.html')
 
@@ -69,4 +71,4 @@ def updatedb(name,email,phonenumber):
 	#this function is sqlalchemy commands to update the database
 	return none
 if __name__ == "__main__":
-    app.run()
+    app.run(host='0.0.0.0', port=8001)

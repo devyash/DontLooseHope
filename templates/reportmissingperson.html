@@ -1,46 +1,10 @@
-<!--<html>
+ <!--<html>
 <body>
-  Welcome PAge-->
+	Welcome PAge-->
   {% extends "main.html" %}
   {% block content %}
   {% include "header.html" %}
-  <script type="text/javascript">
-    function posTrain(imageURL){
-      window.open(imageURL);
 
-    };
-    function trainPerson() {
-      var file    = document.querySelector('input[type=file]').files[0];
-      var reader  = new FileReader();
-
-      reader.addEventListener("load", function () {
-        var dataURI = reader.result;
-        var imageData = dataURI.slice(dataURI.indexOf(',') + 1);
-        console.log(imageData);
-       $.ajax({
-        url: 'https://api.imgur.com/3/image',
-        type: 'post',
-        headers: {
-          Authorization: 'Client-ID ' + '106f3726202fc8c'
-        },
-        data: {
-          image: imageData,
-
-        },
-        dataType: 'json',
-        success: function(response) {
-          if(response.success) {
-            var imageURL = response.data.link;
-
-            posTrain(imageURL);}
-          }});
-          }, false);
-      
-        reader.readAsDataURL(file);
-
-    };
-
-  </script>
 
   <br/><br/>
   <form action="" method="post">
@@ -48,7 +12,7 @@
 
     <div class="row text-left">
       <form action="" method="post" >  
-
+      <h2>Your Current Address</h2>
         <div class="form-group" id="username-form-group">
           <label class="control-label">Name*</label>
           <input class="form-control" id="name" type="text" required="true">
@@ -83,20 +47,20 @@
               </select>
               <div>
                 <br>
-                <input type="button" class="btn btn-primary btn-lg" id="upload" onclick="trainPerson()" value="upload">
                 <div class="image-form">
-                  <input type="file" id="file-input" placeholder="Upload Image">
-                  \
+                  <input type="file" id="file-input">
+                  <br>
+                  <canvas id="canvas" width="600px" height="400px"></canvas>
                 </div>
-                <div class="form-group col-sm-6" id="reportperson-form-group">
-                 <br>
-                 <button  class="btn btn-primary btn-lg" id="submit" value="submit">Submit</button>
 
-               </div>
-             </div>
-           </form>
 
-           {% endblock %}
+              </form>
+
+
+
+
+
+              {% endblock %}
 
 
 <!--</body>
