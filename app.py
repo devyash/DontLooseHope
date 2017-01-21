@@ -1,9 +1,4 @@
 
-#7Hhgsq7dGfibhHLC2YNQjEK_pMK9jB5N_HDqzLCM
-CLARIFAI_APP_ID ="ptutSXCUdWgBfInt4WzBbVa2RZYUTkeZ2jli4jdE"
-
-
-#CLARIFAI_APP_ID=""
 from flask import Flask, request, render_template
 app = Flask(__name__)
 
@@ -27,10 +22,51 @@ app2.tag_urls(['https://samples.clarifai.com/metro-north.jpg'])
 def welcome():
     return render_template('welcome.html')
 
-@app.route("/findmissingperson")
+@app.route("/findmissingperson", methods=['GET', 'POST'])
+
 def findmissingperson():
-	return render_template('findmissingperson.html')
+	if request.method == 'POST':
+		updatedb(request.form['name'],request.form['email'],request.form['phonenumber'])
+		url=uploadimage(image)
+		errortrain=trainclari(url)
+		(name,error) = check(url)
+		return render_template('displayresult.html', error=error, name=name)
+	else:
+		return render_template('findmissingperson.html')
 
 
+@app.route("/reportmissingperson")
+def reportmissingperson():
+	if request.method == 'POST':
+		check(url)
+		return render_template('displayresult.html')
+	else:
+		return render_template('reportmissingperson.html')
+
+
+##Various function defined above
+
+def trainclari(url,name):
+	#This function would train the clarifau 
+	#errortrain=true if not done
+	#errortrain=false if response =ok
+	return errortrain
+
+
+
+
+def check(url):
+	#this function would call predict on the submited image and 
+	# if the value is greater than 0.75
+	# it would return error as false
+	return (name,error)
+
+def uploadimage():
+	# This function would upload a image to imgur and return the url
+	return none
+
+def updatedb(name,email,phonenumber):
+	#this function is sqlalchemy commands to update the database
+	return none
 if __name__ == "__main__":
     app.run()
