@@ -8,6 +8,17 @@ from flask import Flask, request, render_template
 app = Flask(__name__)
 
 from clarifai.rest import ClarifaiApp
+import os,sys
+from sqlalchemy import create_engine, asc
+from sqlalchemy.orm import sessionmaker
+from dB_setup import Base, MissingPeople,FoundPeople
+
+# Connect to Database and create database session
+engine = create_engine('sqlite:///DLH.db')
+Base.metadata.bind = engine
+
+DBSession = sessionmaker(bind=engine)
+session = DBSession()
 
 app2 = ClarifaiApp()
 app2.tag_urls(['https://samples.clarifai.com/metro-north.jpg'])
@@ -16,9 +27,9 @@ app2.tag_urls(['https://samples.clarifai.com/metro-north.jpg'])
 def welcome():
     return render_template('welcome.html')
 
-@app.route("/genderpage")
-def selectgender():
-	return "This will be the he and she page"
+@app.route("/findmissingperson")
+def findmissingperson():
+	return render_template('findmissingperson.html')
 
 
 if __name__ == "__main__":
