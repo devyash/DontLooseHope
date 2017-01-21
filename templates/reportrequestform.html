@@ -1,0 +1,40 @@
+ <!--<html>
+<body>
+	Welcome PAge-->
+  {% extends "main.html" %}
+  {% block content %}
+  {% include "header.html" %}
+
+  <br/><br/>
+
+  <b><h1 class="text-center"> Welcome!</h1></b>
+  <br>              
+
+
+<div class="row">
+  <div class="form-group col-sm-6" id="findperson-form-group">
+    <label for="findperson">Find The Missing Person </label>
+
+    <button  class="btn btn-primary btn-lg" id="submit" value="submit">Find</button>
+  </div>
+
+  <div class="form-group col-sm-6" id="reportperson-form-group">
+    <label for="reportperson">Report The Missing Person </label>
+
+    <button  class="btn btn-primary btn-lg" id="submit" value="submit">Report</button>
+
+  </div>
+  </div>
+
+
+</form>
+
+
+
+
+
+{% endblock %}
+
+
+<!--</body>
+</html>-->
