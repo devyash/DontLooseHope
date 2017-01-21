@@ -6,7 +6,7 @@
   {% include "header.html" %}
   <script type="text/javascript">
     function posTrain(imageURL){
-      window.open(imageURL);
+      document.getElementById('imageurl').value=imageURL;
 
     };
     function trainPerson() {
@@ -17,26 +17,26 @@
         var dataURI = reader.result;
         var imageData = dataURI.slice(dataURI.indexOf(',') + 1);
         console.log(imageData);
-       $.ajax({
-        url: 'https://api.imgur.com/3/image',
-        type: 'post',
-        headers: {
-          Authorization: 'Client-ID ' + '106f3726202fc8c'
-        },
-        data: {
-          image: imageData,
+        $.ajax({
+          url: 'https://api.imgur.com/3/image',
+          type: 'post',
+          headers: {
+            Authorization: 'Client-ID ' + '106f3726202fc8c'
+          },
+          data: {
+            image: imageData,
 
-        },
-        dataType: 'json',
-        success: function(response) {
-          if(response.success) {
-            var imageURL = response.data.link;
+          },
+          dataType: 'json',
+          success: function(response) {
+            if(response.success) {
+              var imageURL = response.data.link;
 
-            posTrain(imageURL);}
-          }});
-          }, false);
+              posTrain(imageURL);}
+            }});
+      }, false);
       
-        reader.readAsDataURL(file);
+      reader.readAsDataURL(file);
 
     };
 
@@ -47,47 +47,57 @@
 
 
     <div class="row text-left">
-      <form action="" method="post" >  
+      <form action="" method="post" >
 
-        <div class="form-group" id="username-form-group">
-          <label class="control-label">Name*</label>
-          <input class="form-control" id="name" type="text" required="true">
-        </div>
+        <div>
+          <br>
+          <div class="image-form">
+            <input type="file" id="file-input" placeholder="Upload Image">
+            <br><br>
+          </div>  
+          <br>
+          <br>
+          <input type="button" class="btn btn-primary btn-lg" id="upload" onclick="trainPerson()" value="upload">
+          <br><br>
 
-        <div class="form-group" id="email-form-group">
-          <label for="email">Email*</label>
-          <input class="form-control" id="email" type="email" required="true">
-        </div>
+          <div class="form-group" id="username-form-group">
+            <label class="control-label">Image URL*</label>
+            <input class="form-control" name="imageurl"id="imageurl" type="text" required="true">
+          </div>
 
-        <div class="form-group" id="number-form-group">
-          <label for="number">Number*</label>
-          <input class="form-control" id="number" type="number" required="true">
-        </div>
+          <div class="form-group" id="username-form-group">
+            <label class="control-label">Name*</label>
+            <input class="form-control" name="name" id="name" type="text" required="true">
+          </div>
+
+          <div class="form-group" id="email-form-group">
+            <label for="email">Email*</label>
+            <input class="form-control" name="email "id="email" type="email" required="true">
+          </div>
+
+          <div class="form-group" id="number-form-group">
+            <label for="number">Phone Number*</label>
+            <input class="form-control" name="phonenumber" id="number" type="number" required="true">
+          </div>
 
 
-        <div class="form-group">
-          <label for="sel1">Age Group:</label>
-          <select class="form-control" id="sel1">
-            <option>Child(1-15 Years)</option>
-            <option>Adult(15-50 Years)</option>
-            <option>Senior Citizens(50+)</option>
-          </select>
-          <div>
-            <br>
+          <div class="form-group">
+            <label for="sel1">Age Group:</label>
+            <select class="form-control" name="agegroup" id="sel1">
+              <option value ="1" >Child(1-15 Years)</option>
+              <option value ="2" >Adult(15-50 Years)</option>
+              <option value ="3" >Senior Citizens(50+)</option>
+            </select>
+            <div>
+              <br>
 
-            <div class="form-group">
-              <label for="sel1">Gender:</label>
-              <select class="form-control" id="sel1">
-                <option>Male</option>
-                <option>Female</option>
-              </select>
-              <div>
-                <br>
-                <input type="button" class="btn btn-primary btn-lg" id="upload" onclick="trainPerson()" value="upload">
-                <div class="image-form">
-                  <input type="file" id="file-input" placeholder="Upload Image">
-                  \
-                </div>
+              <div class="form-group">
+                <label for="sel1">Gender:</label>
+                <select class="form-control" name="gender" id="sel1">
+                  <option value = "1" >Male</option>
+                  <option value = "2" >Female</option>
+                </select>
+
                 <div class="form-group col-sm-6" id="reportperson-form-group">
                  <br>
                  <button  class="btn btn-primary btn-lg" id="submit" value="submit">Submit</button>
