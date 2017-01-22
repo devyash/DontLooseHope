@@ -66,25 +66,25 @@ def check(url):
 # if the value is greater than 0.75
 # it would return error as false
 	image = ClImage(url)
-	response = model.predict([image])
-	print(response)
-	# parsed_input = json.loads(response)
-	# print(parsed_input)
-	# if ((parsed_input['status'])['code'] != 10000):
-	# 	print('Status:', response.status_code, 'Problem with the request. Exiting.')
-	# exit()
+	parsed_input = model.predict([image])
+	#print(type(response))
+	#parsed_input = json.loads(response)
+	#print(parsed_input)
+	if ((parsed_input['status'])['code'] != 10000):
+		print('Status:', response.status_code, 'Problem with the request. Exiting.')
+		return (0,0)
 	
-	# concepts = parsed_input['outputs'][0]['data']['concepts']
-	# for concept in concepts:
-	# 	if (concept['value']>=0.85):
-	# 		name = concept['name']
-	# 		break
-	# 	if name!=None:
-	# 		error = false
-	# 	else:
-	# 		error = true    
-	# 	return (name,error)
-	return (0,0)
+	concepts = parsed_input['outputs'][0]['data']['concepts']
+	max=0
+	name=0
+	error=True
+	for concept in concepts:
+		if (concept['value']>=0.85 and concept['value']>max):
+			max=concept['value']
+			name=max['name']
+			error = False   
+	return (name,error)
+
 
 
 def updatedb(name,email,phonenumber):
