@@ -7,14 +7,14 @@
 
 
 
-<h2>See Results</h2>
+  <h2>See Results</h2>
   <!-- Trigger the modal with a button -->
   <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Results</button>
 
   <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
-    
+
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
@@ -25,18 +25,36 @@
           <p>That someone is named {{searchname}}. We have sent an message to their concerned family members. You can yourself contact them on {{email}} and {{phonenumber}}</p>
         </div>
         <div class="modal-footer">
-        <a href="tel:+1{{phonenumber}}">
-          <button type="button" class="btn btn-default" >Call them!</button></a>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <a href="tel:+1{{phonenumber}}">
+            <button type="button" class="btn btn-default" >Call them!</button></a>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
         </div>
+
       </div>
-      
     </div>
-  </div>
+<div class="page-header">
+  <h1>Share Dialog</h1>
+</div>
+<p>Click the button below to trigger a Share Dialog</p>
+<div id="shareBtn" class="btn btn-success clearfix">Share</div>
+<p style="margin-top: 50px">
+  <hr />
+  <a class="btn btn-small"  href="{{url}}">Share Dialog Documentation</a>
+</p>
+<script>
+document.getElementById('shareBtn').onclick = function() {
+  FB.ui({
+    method: 'share',
+    display: 'popup',
+    href: '{{url}}',
+  }, function(response){});
+}
+</script>
 
 
 
-{% endblock %}
+    {% endblock %}
 
 
 <!--</body>

@@ -57,10 +57,10 @@ def reportmissingperson():
 		if(foundFlag!=True):
 			(name,phonenumber,email)=querydb(searchname)
 			inform(request.form['name'],request.form['phonenumber'],request.form['email'],name,phonenumber,email)
-			return render_template('displaytrueresult.html', searchname=searchname, phonenumber=phonenumber,email=email)
+			return render_template('displaytrueresult.html', searchname=searchname, phonenumber=phonenumber,email=email,url=request.form['imageurl'])
 		else:
 			#trainclari(request.form['imageurl'],request.form['name'])	
-			return render_template('displayfalseresult.html', searchname=searchname)
+			return render_template('displayfalseresult.html', searchname=searchname,url=request.form['imageurl'])
 	#render_template('displayresult.html'"")
 	else:
 		return render_template('reportmissingperson.html')
