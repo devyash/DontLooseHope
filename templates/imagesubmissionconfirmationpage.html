@@ -19,13 +19,13 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">We already know where the person is!</h4>
+          <h4 class="modal-title">We have recieved the image successfully!</h4>
         </div>
         <div class="modal-body">
-          <p>{{searchname}} is at {{address}}. You can get in contact with {{name}} using {{phonenumber}} or {{email}}</p>
+          <p>We are trying our level best to search for {{searchname}}. You can submit multiple images of {{searchname}} to improve the search accuracy. We shall get in touch with you over message if we find any news of {{searchname}}</p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Call</button>
+         <a href="{{url_for('findmissingperson')}}"> <button type="button" class="btn btn-default">Go Back</button></a>
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>

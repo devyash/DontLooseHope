@@ -5,27 +5,63 @@
   {% block content %}
   {% include "header.html" %}
 
-  <br/><br/>
+<br/>
+    <br/>
+    <br/>
 
-
-
-<div class="row text-center">
+    <div class="row text-center" >
   <div class="form-group col-sm-6" id="findperson-form-group">
-  <h2><label for="findperson">Find The Missing Person </label></h2><br>
-     <a href={{url_for('findmissingperson')}}> <button  class="btn btn-primary btn-lg" id="submit" value="submit">Find</button></a>
+    <label for="findperson"><h2>Find The Missing Person </h2></label>
+    <br/>
+    <br/>
+    <a href="{{url_for('findmissingperson')}}"><button  class="btn btn-primary btn-lg" id="submit" value="submit" >Find  </button></a>
   </div>
 
-  <div class="form-group col-sm-6" id="reportperson-form-group">
-   <h2><label for="reportperson">Report The Missing Person </label></h2>
-    <br>
+ <div class="form-group col-sm-6" id="reportperson-form-group">
+    <label for="reportperson"><h2>Report The Missing Person </h2></label>
+    <br/>
+    <br/>
+    <a href="{{url_for('reportmissingperson')}}"><button  class="btn btn-primary btn-lg" id="submit" value="submit">Report</button></a>
 
-    <button  class="btn btn-primary btn-lg" id="submit" value="submit">Report</button>
+ </div>
+ </div>
 
-  </div>
-  </div>
+    <!-- Page Content -->
+    <div class="container">
+
+        <hr class="featurette-divider">
+
+        <!-- First Featurette -->
+        <div class="featurette" id="about">
+            <img class="featurette-image img-circle img-responsive pull-right" src="static/Logo-hands.png">
+            <h2 class="featurette-heading">About</h2>
+            <p class="lead">Finding and Reporting missing people is one click away using this AI-driven application.<br/>Lost your dear one ? Upload pictures and find him. 
+            <br/>Want to report an unidentified person ? - Upload pictures and report him.<br/> It's that simple.</p>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <!-- Second Featurette -->
+        <div class="featurette" id="services">
+            <img class="featurette-image img-circle img-responsive pull-left" src="static/Logo-family.png">
+            <h2 class="featurette-heading">No More Losing Anyone
+            </h2>
+            <p class="lead">We provide you an opportunity to connect in toughest of times. Be it an accident , disaster or any calamity.</p>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <!-- Third Featurette -->
+        <div class="featurette" id="contact">
+            <img class="featurette-image img-circle img-responsive pull-right" src="static/Logo-police.png">
+            <h2 class="featurette-heading">Searching Was Never This Easy
+            </h2>
+            <p class="lead">Searching for a missing person need not be a nightmare for months or even years. We have a solution powered by state of the art technology. You are never too far away in this information age.</p>
+        </div>
+
+        <hr class="featurette-divider">
 
 
-</form>
 
 
 

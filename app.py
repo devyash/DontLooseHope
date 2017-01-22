@@ -32,33 +32,31 @@ def findmissingperson():
 
 		updatedb(request.form['name'],request.form['email'],request.form['phonenumber'])
 		(searchname,error) = check(request.form['imageurl'])
+		trainclari(request.form['imageurl'],request.form['name'])
 
-		if(error!=True):
-			(name,address,phonenumber,email)=querydb(searchname)
-			trainclari(request.form['imageurl'],request.form['name'])
-	
-
-			return render_template('displaytrueresult.html', searchname=searchname, name= name,address=address,phonenumber=phonenumber,email=email)
-		else:
-			trainclari(request.form['imageurl'],request.form['name'])
-
-			return render_template('displayfalseresult.html', searchname=searchname)
-		# return "Hello World!"
+		return render_template('imagesubmissionconfirmationpage.html', searchname=request.form['name'])
 	else:
 		return render_template('findmissingperson.html')
 
 
 
 
-# @app.route("/reportmissingperson")
-# def reportmissingperson():
-# 	if request.method == 'POST':
-# 		#check(url)
-# 		print("Reached here")
-# 		return "Good Work"
-# 		#render_template('displayresult.html'"")
-# 	else:
-# 		return render_template('reportmissingperson.html')
+@app.route("/reportmissingperson", methods=['GET', 'POST'])
+def reportmissingperson():
+	if request.method == 'POST':
+		(searchname,foundFlag)=check(request.form['imageurl'])
+		print (searchname)
+		print(foundFlag)
+		if(foundFlag!=True):
+			(name,phonenumber,email)=querydb(searchname)
+
+			return render_template('displaytrueresult.html', searchname=searchname, phonenumber=phonenumber,email=email)
+		else:
+			#trainclari(request.form['imageurl'],request.form['name'])	
+			return render_template('displayfalseresult.html', searchname=searchname)
+	#render_template('displayresult.html'"")
+	else:
+		return render_template('reportmissingperson.html')
 
 
 ##Various function defined above
@@ -67,7 +65,7 @@ def trainclari(url,name):
 	#This function would train the clarifau 
 	#errortrain=true if not done
 	#errortrain=false if response =ok
-
+	model.add_concepts([name])
 	app2.inputs.create_image_from_url(url=url, concepts=[name])
 	return 0
 
@@ -93,7 +91,7 @@ def check(url):
 	for concept in concepts:
 		if (concept['value']>=0.85 and concept['value']>max):
 			max=concept['value']
-			name=max['name']
+			name=concept['name']
 			error = False   
 	return (name,error)
 
@@ -107,9 +105,10 @@ def updatedb(name,email,phonenumber):
 	return 0
 
 def querydb(searchname):
-	#this function queries the Found People Db and return the above 
-	#details of the person if the person is found 
-	foundperson = session.query(FoundPeople).filter_by(name = searchname).one()
-	return (foundperson.email,foundperson.phonenumber,foundperson.address,foundperson.name)
+	#this function queries the Missing People Db and return the above 
+	#details of the person if found also the contact person details are returned.
+	missingperson = session.query(MissingPeople).filter_by(name = searchname).one()
+	return (missingperson.name,missingperson.phonenumber,missingperson.email)
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8001)
