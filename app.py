@@ -11,6 +11,13 @@ from clarifai.rest import Image as ClImage
 import json
 import time
 
+from twilio.rest import TwilioRestClient
+# put your own credentials here
+ACCOUNT_SID = 'AC6f2f141fa21b8d5de1607082b7c061c7'
+AUTH_TOKEN = '1222563ecaa860b5df8b142f0bd0d4e2'
+
+client = TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN)
+
 
 # Connect to Database and create database session
 engine = create_engine('sqlite:///DLH.db')
@@ -49,7 +56,7 @@ def reportmissingperson():
 		print(foundFlag)
 		if(foundFlag!=True):
 			(name,phonenumber,email)=querydb(searchname)
-
+			inform(request.form['name'],request.form['phonenumber'],request.form['email'],name,phonenumber,email)
 			return render_template('displaytrueresult.html', searchname=searchname, phonenumber=phonenumber,email=email)
 		else:
 			#trainclari(request.form['imageurl'],request.form['name'])	
@@ -89,7 +96,7 @@ def check(url):
 	name=0
 	error=True
 	for concept in concepts:
-		if (concept['value']>=0.85 and concept['value']>max):
+		if (concept['value']>=0.6 and concept['value']>max):
 			max=concept['value']
 			name=concept['name']
 			error = False   
@@ -109,6 +116,13 @@ def querydb(searchname):
 	#details of the person if found also the contact person details are returned.
 	missingperson = session.query(MissingPeople).filter_by(name = searchname).one()
 	return (missingperson.name,missingperson.phonenumber,missingperson.email)
+
+def inform(reporteename,reporteephonenumber,reporteeemail,name,phonenumber,email):
+	#this function informs reportee phone number and email to name, phonenumber and email
+	client.messages.create(
+	to = phonenumber,
+	from_ = '352-559-5980',
+	body = 'We have found '+name+'. Please Contact '+reporteename+','+reporteephonenumber+','+reporteeemail,)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8001)
