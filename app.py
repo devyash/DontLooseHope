@@ -27,7 +27,7 @@ DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
 app2 = ClarifaiApp()
-model = app2.models.get('dontloosehope')
+model = app2.models.get('Peoplefinder3')
 
 @app.route('/')
 def welcome():
@@ -38,7 +38,6 @@ def findmissingperson():
 	if request.method == 'POST':
 
 		updatedb(request.form['name'],request.form['email'],request.form['phonenumber'])
-		#(searchname,error) = check(request.form['imageurl'])
 		trainclari(request.form['imageurl'],request.form['name'])
 
 		return render_template('imagesubmissionconfirmationpage.html', searchname=request.form['name'])

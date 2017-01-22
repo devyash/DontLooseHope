@@ -27,7 +27,7 @@ DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
 app2 = ClarifaiApp()
-model = app2.models.get('dontloosehope')
+model = app2.models.get('Peoplefinder3')
 
 @app.route('/')
 def welcome():
