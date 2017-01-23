@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<style type = "text/css">
+	.row {
+    	text-align: center;
+    	color: red;
+	}
+	body {background-color: blue;}
+	</style>
+    <title>thenewboston</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+
+<body bgcolor="red">
+ <div class="jumbotron text-center">
+  <h1>Don't Lose Hope</h1>
+ </div>
+
+ <br/><br/>
+
+  <!--
+  <b><h1 class="text-center"> Welcome!</h1></b>
+  <br>
+  -->              
+
+
+<div class="row">
+  <div class="form-group col-sm-6" id="findperson-form-group">
+    <label for="findperson"><h2>Find The Missing Person </h2></label>
+    <br/>
+    <br/>
+    <button  class="btn btn-primary btn-lg" id="submit" value="submit">Find</button>
+  </div>
+
+  <div class="form-group col-sm-6" id="reportperson-form-group">
+    <label for="reportperson"><h2>Report The Missing Person </h2></label>
+    <br/>
+    <br/>
+    <button  class="btn btn-primary btn-lg" id="submit" value="submit">Report</button>
+
+  </div>
+ </div>
+	
+
+</body>
+</html>
