@@ -22,3 +22,5 @@ Flask is used to create a REST'full web server. JavaScript BootSrap for the fron
 
                         http://45.79.193.195:8000
                         http://donotlosehope.tk/ (Will work for 3 months approx)
+                        
+## Screenshots
