@@ -16,3 +16,8 @@ Flask is used to create a REST'full web server. JavaScript BootSrap for the fron
 
 ## Contact
 --You can email me at devyashsanghai@gmail.com if you need any help and this in hurry documention is too much for you :P
+
+
+## App Running at 
+
+                        http://45.79.193.195:8000/
