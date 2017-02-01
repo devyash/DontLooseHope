@@ -20,4 +20,4 @@ Flask is used to create a REST'full web server. JavaScript BootSrap for the fron
 
 ## App Running at 
 
-                        http://45.79.193.195:8000/
+                        http://45.79.193.195:8000
