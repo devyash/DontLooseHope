@@ -6,7 +6,7 @@ configparser==3.5.0
 cryptography==1.5
 duplicity==0.7.6
 enum34==1.1.6
-Flask==0.12
+Flask==1.0
 functools32==3.2.3.post2
 future==0.15.2
 gyp==0.1
