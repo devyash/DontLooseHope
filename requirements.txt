@@ -3,7 +3,7 @@ chardet==2.3.0
 clarifai==2.0.17
 click==6.7
 configparser==3.5.0
-cryptography==3.2
+cryptography==39.0.1
 duplicity==0.7.6
 enum34==1.1.6
 Flask==1.0
