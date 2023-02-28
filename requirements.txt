@@ -32,4 +32,4 @@ SQLAlchemy==1.1.5
 twilio==5.6.0
 urllib3==1.26.5
 virtualenv==15.1.0
-Werkzeug==0.15.3
+Werkzeug==2.2.3
